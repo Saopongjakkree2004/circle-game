@@ -1,0 +1,63 @@
+<html>
+    <head>
+      <title>!!Circle_Game!!</title>
+    </head>
+    <body onkeydown="keydown(event)">
+        <canvas id="paper" width="600" height="600" style="border:1px solid #cf0000;"></canvas>
+        <button onclick="shrink()">Low Low! </button>
+    </body>
+    <script type="text/javascript">
+        var canvas = document.getElementById("paper")
+        var game = {max_size:300, center_x: 300, center_y: 300, size: 5, step: 5, is_end: false}
+
+        let keydown = (event) =>{
+            if(event.keyCode == 32){
+                shrink();
+            }
+        }
+
+        let grow = () =>{
+            if(game.size >= game.max_size){
+                endGame();
+            }else{
+                game.size = game.size + game.step;
+            }
+        }
+        let draw = () => {
+            var ctx = canvas.getContext("2d");
+            ctx.clearRect(0,0, canvas.width, canvas.heigth);
+            ctx.beginPath();
+            ctx.arc(game.center_x, game.center_y, game.size, 0,2*Math.PI);
+            ctx.fillStyle ="yellow";
+            ctx.fill();
+        }
+
+        let endGame = () => {
+            game.is_end = true;
+            clearInterval(intervol);
+        }
+        let count = 0;
+        
+        let intervol = setInterval(() => {
+            grow();
+            window.requestAnimationFrame(draw);
+        }, 50)
+        
+        let Low_size = () => {
+            console.log("LOW LOW!!!");
+            game.size = game.size - 5;
+        }
+        
+
+        let shrink = () => {
+            if(game.is_end == false && game.size > 0){
+                let _size = game.size - (game.step*2)
+                if(_size >= 0){
+                    game.size = _size;
+                }else{
+                    game.size=5
+                }
+            }
+        }
+    </script>
+</html>
