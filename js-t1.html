@@ -11,8 +11,9 @@
     </body>
     <script>
         let x = 5;
-        display(x);
-
+        let sum = 0 + x;
+        display(sum);
+        
 
         function countUP() {
             console.log("Count UP!!!");
@@ -20,7 +21,7 @@
             console.log("value", value);
             x = x + parseInt(value);
 
-            display(x);
+            display(sum);
         }
         function countDOWN() {
             console.log("Count DOWN!!!");
@@ -28,7 +29,7 @@
             console.log("value", value);
             x = x - parseInt(value);
             if(x >= 0){ 
-                display(x);
+                display(sum);
             }else if(x < 0){
                 document.getElementById("result").innerHTML = "Error Negative Number"
             }
@@ -36,11 +37,19 @@
         }
         function reset(){
             console.log("Reset!!!");
+            sum = x
+            document.getElementById("result").innerHTML = x
             
 
         }
         function display(numberDisplay){
             document.getElementById("result").innerHTML = numberDisplay;
+        }
+        function displayError(sum) {
+        if (sum < 0) {
+            document.getElementById("result").innerHTML = "Please Reset Number";
+        } else {
+            document.getElementById("result").innerHTML = sum;
         }
     </script>
 </html>
