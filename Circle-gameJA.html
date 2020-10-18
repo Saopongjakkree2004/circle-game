@@ -1,0 +1,65 @@
+<html>
+
+<head>
+    <title>Gircle-Game NAJA</title>
+</head>
+
+<body onkeyup="keyup(event)">
+    <canvas height="400" id="myCanvas" width="600" style="border:1px solid #cf0000;"></canvas>
+    <button onclick="left()">left left! </button>
+    <button onclick="right()">right right! </button>
+    <button onclick="Reset()">Play again! </button>
+    <script type="text/javascript">
+        var canvas = document.getElementById('myCanvas');
+
+        var A = 200
+        var B = 50
+        var C = 200
+        var D = 100
+
+        let keyup = (event) => {
+            if (event.keyCode == 37) {
+                left();
+            } if (event.keyCode == 39) {
+                right();
+            } if (event.keyCode == 82) {
+                Reset();
+            }
+        }
+        let left = () => {
+            A = A - 10;
+            if (A == -10) {
+                endGame();
+            }
+            console.log("ซ้าย", A)
+        }
+
+        let right = () => {
+            A = A + 10;
+            if (A == 410) {
+                endGame();
+            }
+            console.log("ขวา", A)
+        }
+        let Reset = () => {
+            interval = setInterval(() => {
+
+                window.requestAnimationFrame(draw);
+            }, 50)
+            A = 200;
+            console.log("!!!!!ไม่ยอมหรอก!!!!!")
+        }
+
+        let endGame = () => {
+
+            clearInterval(interval);
+            console.log("จบจ้า")
+        }
+        let interval = setInterval(() => {
+
+            window.requestAnimationFrame(draw);
+        }, 50)
+    </script>
+</body>
+
+</html>
