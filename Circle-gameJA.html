@@ -17,6 +17,20 @@
         var C = 200
         var D = 100
 
+        let draw = () => {
+            var context = canvas.getContext('2d');
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.beginPath();
+            context.rect(A, B, C, D);
+            context.fillStyle = 'yellow';
+            context.fill();
+            context.lineWidth = 7;
+            context.strokeStyle = 'black';
+            context.stroke();
+
+        }
+
+
         let keyup = (event) => {
             if (event.keyCode == 37) {
                 left();
